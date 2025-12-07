@@ -2,7 +2,7 @@
 
 ![Simulation demo](demo.gif)
 
-Playable [Here](a-lothian.github.io/Game-of-Life-WebGPU)
+Playable [Here](https://a-lothian.github.io/Game-of-Life-WebGPU)
 
 A lightweight exploration of Conway's Game of Life rendered with WebGPU. Built while following Google's _Your first WebGPU app_ codelab and extended with a few QoL features.
 

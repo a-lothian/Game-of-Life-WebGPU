@@ -9,29 +9,28 @@
 </head>
 
 <body>
-    <canvas width="256" height="256"></canvas>
-
+    <canvas width="512" height="512"></canvas>
+    <button id="menu-toggle"> tmpLabel </button>
     <div id="controls">
         <p>Grid Size X: <span id="res-meter-x">64</span></p>
-        <input id="res-input-x" type="range" min="16" max="1024" step="1" value="64">
+        <input id="res-input-x" type="range" min="16" max="1024" step="1" value="128">
         <p>Grid Size Y: <span id="res-meter-y">64</span></p>
-        <input id="res-input-y" type="range" min="16" max="1024" step="1" value="64">
+        <input id="res-input-y" type="range" min="16" max="1024" step="1" value="128">
 
         <p>Cell Scale: <span id="cell-size-meter">4</span></p>
         <input id="cell-size" type="range" min="0" max="3" value="2">
 
-
-        <p>Simulation Speed: <span id="sim-speed-meter">1</span></p>
+        <p>Simulation Speed (Steps Per Frame): <span id="sim-speed-meter">1</span></p>
         <input id="sim-speed" type="range" min="-5" max="10" value="0">
         <br>
         <b>Note: Values above 1 will not render every step</b>
 
-        <p>Brush Size: <span id="brush-size-meter">4</span></p>
-        <input id="brush-size" type="range" min="1" max="64" value="4">
+        <p>Brush Size: <span id="brush-size-meter">16</span></p>
+        <input id="brush-size" type="range" min="1" max="64" value="16">
 
         <p>FPS: <span id="fps-meter">-</span></p>
     </div>
-    
+
     <script src="main.js" type="module"></script>
 </body>
 

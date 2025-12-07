@@ -1,12 +1,15 @@
+// DEFAULT VALUES
 let PIXELS_PER_CELL = 4;
-let GRID_SIZE_X = 64;
-let GRID_SIZE_Y = 64;
+let GRID_SIZE_X = 128;
+let GRID_SIZE_Y = 128;
 let TARGET_SIM_RATE = 1;
-let BRUSH_RADIUS_SQRED = 8; // brush radius squared
+let BRUSH_RADIUS_SQRED = 256; // brush radius squared
 const WORKGROUP_SIZE = 8;
+
 let step = 0; // count number of frames simulated
 let simAcc = 0; // accumulator to allow fractional simulation speeds
 
+// UI binds
 const canvas = document.querySelector("canvas");
 
 const resInputX = document.querySelector("#res-input-x");
@@ -25,6 +28,17 @@ const brushSize = document.querySelector("#brush-size");
 const brushSizeMeter = document.querySelector("#brush-size-meter");
 
 const fpsMeter = document.querySelector("#fps-meter");
+
+const controlsPanel = document.querySelector("#controls");
+
+const menuButton = document.querySelector("#menu-toggle");
+menuButton.innerHTML = '>'; // this breaks my html linter, so I set it dynamically
+
+resInputX.value = GRID_SIZE_X;
+resInputY.value = GRID_SIZE_Y;
+cellScale.value = Math.log2(PIXELS_PER_CELL);
+simSpeed.value = Math.log2(TARGET_SIM_RATE);
+brushSize.value = Math.sqrt(BRUSH_RADIUS_SQRED);
 
 let lastFrameTime = performance.now();
 
@@ -228,11 +242,8 @@ const simulationShaderModule = device.createShaderModule({
 
                         if (rnd < softness) {
                             cellStateOut[i] = 1;
-                        } else {
-                            cellStateOut[i] = 0;
                         }
 
-                        //cellStateOut[i] = 1;
                     } else {
                         cellStateOut[i] = calculateCell(cell.xy);
                     }
@@ -472,6 +483,15 @@ brushSize.addEventListener("input", (e) => {
     BRUSH_RADIUS_SQRED = brushSize.value * brushSize.value;
     brushSizeMeter.textContent = brushSize.value;
 })
+
+menuButton.addEventListener('click', () => {
+    controlsPanel.classList.toggle('hidden');
+    if (controlsPanel.classList.contains('hidden')) {
+        menuButton.innerHTML = '<';
+    } else {
+        menuButton.innerHTML = '>';
+    }
+});
 
 //report the mouse position on click
 canvas.addEventListener("mousedown", (e) => {

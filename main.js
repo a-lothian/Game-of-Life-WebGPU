@@ -49,6 +49,8 @@ const singleCellValue = new Uint32Array([1]);
 
 // check WebGPU support
 if (!navigator.gpu) {
+    const gpuWarning = document.createElement("h1");
+    gpuWarning.innerText = "This browser does not support WebGPU. Find more information here: https://caniuse.com/webgpu"
     throw new Error("WebGPU not supported on this browser.");
 }
 
